@@ -79,7 +79,7 @@ canvas {
 
 /* Bounce animation */
 .start-bounce {
-  animation: bounceDown 2s ease-out;
+  animation: bounceDown 1.5s ease-out;
 }
 
 @keyframes bounceDown {
@@ -141,81 +141,7 @@ canvas {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Visual FX */
-.hidden {
-  display: none;
-}
-
-.water-drop {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: #0ff;
-  border-radius: 50%;
-  animation: splash-fall 1s linear;
-  pointer-events: none;
-}
-
-@keyframes splash-fall {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(50vh); }
-}
-
-.ripple {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: ripple-explode 0.7s ease-out;
-}
-
-@keyframes ripple-explode {
-  0% { transform: scale(0.1); opacity: 1; }
-  100% { transform: scale(2); opacity: 0; }
-}
-
-/* Particle Trail */
-.particle {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0.8;
-  animation: particle-fade 1s linear forwards;
-}
-
-@keyframes particle-fade {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(0.2); opacity: 0; }
-}
-
-/* Fireflies */
-.firefly {
-  position: fixed;
-  width: 4px;
-  height: 4px;
-  background: var(--accent);
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: flicker 4s infinite ease-in-out alternate,
-             drift 12s infinite linear;
-  pointer-events: none;
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-
-@keyframes drift {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(-100vh) translateX(50vw); }
-}
-/* Loading Dots */
+/* Typing Loader */
 .loading-screen {
   position: fixed;
   width: 100%;
@@ -227,29 +153,47 @@ canvas {
   z-index: 9999;
 }
 
-.loading-screen .dot {
-  width: 14px;
-  height: 14px;
-  margin: 0 6px;
-  border-radius: 50%;
+.typing-loader {
+  font-size: 20px;
+  color: var(--accent);
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+}
+
+.typing-loader .cursor {
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Particle Burst */
+.particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
   background: var(--accent);
-  animation: loading-bounce 1s infinite ease-in-out;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 1s ease-out forwards;
 }
 
-.loading-screen .dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.loading-screen .dot:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes loading-bounce {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-15px);
+@keyframes explode {
+  from {
+    transform: translate(0, 0);
     opacity: 1;
   }
+  to {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
+}
+
+/* Utility */
+.hidden {
+  display: none;
 }
