@@ -49,16 +49,24 @@ canvas {
   align-items: center;
   justify-content: center;
   text-align: center;
+  background: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(2px);     
+  z-index: 1;
+  padding: 20px;
+  border-radius: 20px;
 }
 
+
 .logo-card {
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 255, 255, 0.07);  /* more transparent */
   padding: 30px;
   border-radius: 20px;
   border: 2px solid var(--accent);
   margin-bottom: 20px;
   transition: transform 0.6s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
+
 
 .logo {
   font-size: 50px;
