@@ -8,30 +8,40 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <!-- Loading Animation -->
   <div class="loading-screen" id="loading">
     <div class="dots">
       <span></span><span></span><span></span>
     </div>
   </div>
 
+  <!-- Canvas for Animated Waves -->
   <canvas id="waves"></canvas>
 
-  <div class="main-container" id="mainContent" style="display:none;">
+  <!-- Main Profile Content -->
+  <div class="main-container" id="mainContent" style="display: none;">
     <div class="logo-card bounce-box" id="logoBox">
-      <div class="logo">V</div>
-      <div class="name">@la.kawaguchi / vaibhav</div>
-      <div class="subtext">coder</div>
+      <div class="logo">Vk</div>
+      <div class="name">@Vaibhav</div>
+      <div class="subtext">A coder</div>
     </div>
+
     <div class="description hidden" id="descBox">
       <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building.</p>
     </div>
+
     <div class="buttons hidden" id="btnBox">
-      <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-      <a href="https://discord.com/users/la.kawaguchi" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+      <a href="https://twitter.com/nonetheless099" target="_blank">
+        <i class="fab fa-twitter"></i> Twitter
+      </a>
+      <a href="https://discord.com/users/la.kawaguchi" target="_blank">
+        <i class="fab fa-discord"></i> Discord
+      </a>
       <a href="#">Tithing</a>
     </div>
   </div>
 
+  <!-- Loading → Bounce → Show Animations -->
   <script>
     window.onload = function () {
       setTimeout(() => {
@@ -43,8 +53,9 @@
         logoBox.classList.add("start-bounce");
 
         setTimeout(() => {
-          document.getElementById("descBox").classList.remove("hidden");
-          document.getElementById("descBox").classList.add("desc-bounce");
+          const desc = document.getElementById("descBox");
+          desc.classList.remove("hidden");
+          desc.classList.add("desc-bounce");
 
           setTimeout(() => {
             const btn = document.getElementById("btnBox");
@@ -56,6 +67,7 @@
     };
   </script>
 
+  <!-- Waves + Water Drops + Ripple -->
   <script src="waves.js"></script>
 </body>
 </html>
