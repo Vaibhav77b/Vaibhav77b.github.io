@@ -8,11 +8,20 @@
   <script defer src="waves.js"></script>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- Light/Dark Toggle -->
   <button class="toggle-mode" onclick="toggleMode()">🌓 Mode</button>
 
-  <div class="main-container">
+  <!-- Main Content -->
+  <div class="main-container hidden" id="main">
     <div class="logo-card start-bounce">
-      <div class="logo">Vk</div>
+      <div class="logo">V</div>
       <div class="name">Vaibhav</div>
       <div class="subtext">Coder</div>
     </div>
@@ -29,5 +38,13 @@
 
   <canvas id="waveCanvas"></canvas>
   <audio id="splash-sound" src="splash.mp3" preload="auto"></audio>
+
+  <script>
+    // Loading screen logic
+    window.addEventListener('load', () => {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('main').classList.remove('hidden');
+    });
+  </script>
 </body>
 </html>
