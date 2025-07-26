@@ -48,11 +48,29 @@ canvas {
   bottom: 0;
   width: 100%;
   height: 200px;
-  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyB2aWV3Qm94PScwIDAgMTAwMCAxMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTAgNzVIMTAwMFYxMDBIMFY3NVonIGZpbGw9JyMwZmYnLz48cGF0aCBkPSdNIDAgNjAgQyA1MCA3NSA3NSA1NSA4MDAgNjAgTCAxMDAwIDUwIFYgMTAwIEggMCBaJyBmaWxsPSIjMGZmIiBvcGFjaXR5PSIwLjI1Ii8+PC9zdmc+') no-repeat bottom;
-  background-size: cover;
-  opacity: 0.5;
   z-index: -2;
+  background: linear-gradient(to top, transparent 0%, var(--bg) 100%);
+  overflow: hidden;
 }
+
+.wave-bg::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: -20px;
+  left: -50%;
+  background: url('https://raw.githubusercontent.com/kaustubhai/svg-wave-animation/main/wave.svg');
+  background-size: cover;
+  opacity: 0.4;
+  animation: waveMove 10s linear infinite;
+}
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
 
 .main-container {
   height: 100%;
