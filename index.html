@@ -1,99 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>know bou me</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="waves.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nonetheless</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body class="glitch-bg">
-  <!-- Typing Loader -->
-  <div class="loading-screen" id="loading">
-    <div class="typing-loader"><span id="typed-text"></span><span class="cursor">|</span></div>
-  </div>
-
-  <!-- Light/Dark Toggle -->
-  <button class="toggle-mode" onclick="toggleMode(); bounceButtons();">🌓 Mode</button>
-
-  <!-- Main Content -->
-  <div class="main-container hidden" id="main">
-    <div class="logo-card" id="logoBox">
-      <div class="logo">Nonetheless</div>
+  <button class="toggle-mode" onclick="toggleMode()">🌓 Mode</button>
+  <canvas id="fireflyCanvas"></canvas>
+  <div class="main-container">
+    <div class="logo-card start-bounce">
+      <div class="logo glitch-text" data-text="Nonetheless">Nonetheless</div>
       <div class="name">welcome here</div>
-      <div class="subtext">someone</div>
+      <div class="subtext"><em>someone</em></div>
     </div>
-
     <div class="description desc-bounce">
-      <p>Hello! I'm Vaibhav aka @la.kawaguchi im pretty sigma which you should note because my alpha wolf mode is pretty dangerous haha.. yeah i have skills in some languages js,html,css,py these mostly, not those languages yk English.</p>
+      <p>Hello! I'm Vaibhav aka @la.kawaguchi, passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building.</p>
     </div>
-
-    <div class="buttons btn-bounce" id="buttonGroup">
-      <a href="https://twitter.com/nonetheless099" target="_blank">Twitter</a>
-      <a href="https://discord.com/users/1386962259103846443" target="_blank">Discord</a>
+    <div class="buttons btn-bounce">
+      <a href="https://twitter.com" target="_blank">Twitter</a>
+      <a href="https://discord.com/users/la.kawaguchi" target="_blank">Discord</a>
     </div>
   </div>
-
-  <canvas id="waveCanvas"></canvas>
-  <audio id="splash-sound" src="splash.mp3" preload="auto"></audio>
-
-  <script>
-    // Typing effect setup
-    const text = 'Loading Skibidi Toilet...';
-    let index = 0;
-
-    function type() {
-      if (index < text.length) {
-        document.getElementById('typed-text').textContent += text.charAt(index);
-        index++;
-        setTimeout(type, 80);
-      } else {
-        setTimeout(() => startMainContent(), 600);
-      }
-    }
-
-    function startMainContent() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('main').classList.remove('hidden');
-      fallLogo();
-      burstParticles();
-    }
-
-    function fallLogo() {
-      const box = document.getElementById('logoBox');
-      box.classList.add('start-bounce');
-    }
-
-    function burstParticles() {
-      for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.left = `${window.innerWidth / 2}px`;
-        p.style.top = `${window.innerHeight / 2}px`;
-        p.style.setProperty('--dx', `${Math.random() * 200 - 100}px`);
-        p.style.setProperty('--dy', `${Math.random() * 200 - 100}px`);
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 1000);
-      }
-    }
-
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-    }
-
-    function bounceButtons() {
-      const buttons = document.querySelectorAll('#buttonGroup a');
-      buttons.forEach(btn => {
-        btn.classList.remove('btn-bounce');
-        void btn.offsetWidth; // reflow
-        btn.classList.add('btn-bounce');
-      });
-    }
-
-
-    window.onload = type;
-  </script>
-  <div class="wave-bg"></div>
-
 </body>
 </html>
