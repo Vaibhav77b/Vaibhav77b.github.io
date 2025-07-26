@@ -1,0 +1,56 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #000;
+  color: white;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.center-text h1 {
+  font-size: 3rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px #0ff;
+}
+
+.center-text p {
+  font-size: 1.2rem;
+  color: #0ff;
+  margin-top: 10px;
+}
+
+.buttons {
+  margin-top: 25px;
+}
+
+.buttons a {
+  margin: 0 10px;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 2px solid #0ff;
+  border-radius: 25px;
+  color: #0ff;
+  transition: all 0.3s ease;
+}
+
+.buttons a:hover {
+  background-color: #0ff;
+  color: #000;
+}
