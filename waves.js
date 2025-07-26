@@ -1,63 +1,47 @@
-const canvas = document.getElementById("waves");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
 
-let waveOffset = 0;
-
-function drawWave() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let j = 0; j < 3; j++) {
-    ctx.beginPath();
-    for (let i = 0; i < canvas.width; i++) {
-      const x = i;
-      const y = canvas.height / 2 +
-        Math.sin(i * 0.01 + waveOffset + j) * 20 * (j + 1) +
-        Math.cos(i * 0.02 + waveOffset) * 10;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = `rgba(0, 255, 255, ${0.2 + j * 0.2})`;
-    ctx.lineWidth = 1.5 + j;
-    ctx.stroke();
-  }
-  waveOffset += 0.02;
-  requestAnimationFrame(drawWave);
-}
-drawWave();
-
-function createSplash() {
-  const drop = document.createElement('div');
-  drop.classList.add('water-drop');
-  drop.style.left = Math.random() * 100 + 'vw';
-  drop.style.top = Math.random() * 80 + 'vh';
-  document.body.appendChild(drop);
-  createRipple(drop.style.left, drop.style.top);
-  if (window.splashSound) {
-    splashSound.currentTime = 0;
-    splashSound.play();
-  }
-  setTimeout(() => drop.remove(), 3000);
-}
-setInterval(createSplash, 1000);
-
-function createRipple(x, y) {
-  const ripple = document.createElement("div");
-  ripple.classList.add("ripple");
-  ripple.style.left = x;
-  ripple.style.top = y;
-  document.body.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 700);
-}
-
-document.addEventListener("mousemove", e => {
-  createRipple(`${e.clientX}px`, `${e.clientY}px`);
-});
-
-const splashSound = new Audio("splash.mp3");
-window.splashSound = splashSound;
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
 
 window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
 });
+
+let offset = 0;
+
+function drawWaveLayer(amplitude, frequency, speed, color, alpha, offsetShift) {
+  ctx.beginPath();
+  ctx.moveTo(0, height / 2);
+
+  for (let x = 0; x <= width; x++) {
+    let y = height / 2 + Math.sin((x + offset * speed + offsetShift) * frequency) * amplitude;
+    ctx.lineTo(x, y);
+  }
+
+  ctx.lineTo(width, height);
+  ctx.lineTo(0, height);
+  ctx.closePath();
+
+  ctx.fillStyle = `rgba(${color}, ${alpha})`;
+  ctx.fill();
+}
+
+function animateWaves() {
+  ctx.clearRect(0, 0, width, height);
+
+  // Layer 1: big soft background wave
+  drawWaveLayer(25, 0.015, 1.2, '0,255,255', 0.04, 0);
+
+  // Layer 2: middle wave
+  drawWaveLayer(18, 0.02, 1.8, '0,255,255', 0.06, 50);
+
+  // Layer 3: smaller detail wave
+  drawWaveLayer(12, 0.03, 2.2, '0,255,255', 0.08, 100);
+
+  offset++;
+  requestAnimationFrame(animateWaves);
+}
+
+animateWaves();
