@@ -16,7 +16,7 @@
   </div>
 
   <!-- Light/Dark Toggle -->
-  <button class="toggle-mode" onclick="toggleMode()">🌓 Mode</button>
+  <button class="toggle-mode" onclick="toggleMode(); bounceButtons();">🌓 Mode</button>
 
   <!-- Main Content -->
   <div class="main-container hidden" id="main">
@@ -30,7 +30,7 @@
       <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building.</p>
     </div>
 
-    <div class="buttons btn-bounce">
+    <div class="buttons btn-bounce" id="buttonGroup">
       <a href="https://twitter.com/la_kawaguchi" target="_blank">Twitter</a>
       <a href="https://discord.com/users/1390661706111516817" target="_blank">Discord</a>
     </div>
@@ -45,6 +45,19 @@
       document.getElementById('loading').style.display = 'none';
       document.getElementById('main').classList.remove('hidden');
     });
+
+    function toggleMode() {
+      document.body.classList.toggle('light-mode');
+    }
+
+    function bounceButtons() {
+      const buttons = document.querySelectorAll('#buttonGroup a');
+      buttons.forEach(btn => {
+        btn.classList.remove('btn-bounce');
+        void btn.offsetWidth; // trigger reflow
+        btn.classList.add('btn-bounce');
+      });
+    }
   </script>
 </body>
 </html>
