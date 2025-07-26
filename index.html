@@ -1,80 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Know more</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaibhav</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="waves.js"></script>
 </head>
 <body>
   <button class="toggle-mode" onclick="toggleMode()">🌓 Mode</button>
 
-  <div class="loading-screen" id="loading">
-    <div class="dots"><span></span><span></span><span></span></div>
-  </div>
-
-  <canvas id="waves"></canvas>
-
-  <div class="main-container" id="mainContent" style="display:none;">
-    <div class="logo-card bounce-box" id="logoBox">
-      <div class="logo">Vk</div>
+  <div class="main-container">
+    <div class="logo-card start-bounce">
+      <div class="logo">V</div>
       <div class="name">Vaibhav</div>
       <div class="subtext">Coder</div>
     </div>
-    <div class="description hidden" id="descBox">
+
+    <div class="description desc-bounce">
       <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building.</p>
     </div>
-    <div class="buttons hidden" id="btnBox">
-      <a href="https://twitter.com/nonetheless099" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-      <a href="https://discord.com/users/la.kawaguchi" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-      <a href="#">Nothing</a>
+
+    <div class="buttons btn-bounce">
+      <a href="https://twitter.com/la_kawaguchi" target="_blank">Twitter</a>
+      <a href="https://discord.com/users/1390661706111516817" target="_blank">Discord</a>
     </div>
   </div>
 
-  <script>
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-        document.getElementById("logoBox").classList.add("start-bounce");
-
-        setTimeout(() => {
-          document.getElementById("descBox").classList.remove("hidden");
-          document.getElementById("descBox").classList.add("desc-bounce");
-
-          setTimeout(() => {
-            const btn = document.getElementById("btnBox");
-            btn.classList.remove("hidden");
-            btn.classList.add("btn-bounce");
-          }, 1000);
-        }, 2400);
-      }, 1800);
-
-      // Fireflies
-      for (let i = 0; i < 30; i++) {
-        const firefly = document.createElement('div');
-        firefly.className = 'firefly';
-        firefly.style.top = Math.random() * window.innerHeight + 'px';
-        firefly.style.left = Math.random() * window.innerWidth + 'px';
-        document.body.appendChild(firefly);
-      }
-
-      // Particle trail
-      document.addEventListener('mousemove', e => {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.left = e.pageX + 'px';
-        p.style.top = e.pageY + 'px';
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 1000);
-      });
-    };
-
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-    }
-  </script>
-  <script src="waves.js"></script>
+  <canvas id="waveCanvas"></canvas>
+  <audio id="splash-sound" src="splash.mp3" preload="auto"></audio>
 </body>
 </html>
