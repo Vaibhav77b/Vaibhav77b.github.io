@@ -15,6 +15,35 @@ canvas {
   z-index: -1;
 }
 
+.loading-screen {
+  position: fixed;
+  background: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background: #0ff;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+}
+
 .main-container {
   position: absolute;
   top: 50%;
@@ -32,6 +61,7 @@ canvas {
   padding: 30px 20px;
   margin-bottom: 20px;
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+  position: relative;
 }
 
 .logo {
@@ -79,4 +109,41 @@ canvas {
 .buttons a:hover {
   background-color: #0ff;
   color: #000;
+}
+
+.buttons i {
+  margin-right: 8px;
+}
+
+.water-drop {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: #0ff;
+  border-radius: 50%;
+  animation: splash-fall 3s ease-in-out;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@keyframes splash-fall {
+  0% { transform: scale(0.6); opacity: 0.7; }
+  50% { transform: scale(1.5); opacity: 0.4; }
+  100% { transform: scale(0.1); opacity: 0; }
+}
+
+.ripple {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #0ff;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: ripple-explode 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-explode {
+  0% { transform: scale(0.2); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
 }
