@@ -5,23 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>@la.kawaguchi / vaibhav</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <div class="loading-screen" id="loading">
+    <div class="dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
   <canvas id="waves"></canvas>
-  <div class="main-container">
+
+  <div class="main-container" id="mainContent" style="display:none;">
     <div class="logo-card">
       <div class="logo">Vk</div>
-      <div class="name">Vaibhav</div>
-      <div class="subtext">A coder</div>
+      <div class="name">@Vaibhav</div>
+      <div class="subtext">coder</div>
     </div>
     <div class="description">
       <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building.</p>
     </div>
     <div class="buttons">
-      <a href="https://twitter.com/" target="_blank">Find my Twitter</a>
-      <a href="https://discord.com/" target="_blank">Find my Discord</a>
+      <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+      <a href="#" target="_blank">Tithing</a>
     </div>
   </div>
+
+  <script>
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      }, 1800);
+    }
+  </script>
+
   <script src="waves.js"></script>
 </body>
 </html>
