@@ -1,43 +1,27 @@
+// Add a colorful burst effect on click
+document.addEventListener("click", (e) => {
+  for (let i = 0; i < 10; i++) {
+    const dot = document.createElement("div");
+    dot.className = "dot";
+    dot.style.position = "fixed";
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
+    dot.style.width = "8px";
+    dot.style.height = "8px";
+    dot.style.borderRadius = "50%";
+    dot.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    dot.style.pointerEvents = "none";
+    document.body.appendChild(dot);
 
-function toggleMode() {
-  document.body.classList.toggle("light-mode");
-}
-const canvas = document.getElementById("fireflyCanvas");
-const ctx = canvas.getContext("2d");
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
+    const dx = (Math.random() - 0.5) * 120;
+    const dy = (Math.random() - 0.5) * 120;
 
-window.addEventListener("resize", () => {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-});
-
-const fireflies = [];
-for (let i = 0; i < 50; i++) {
-  fireflies.push({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    radius: Math.random() * 2 + 1,
-    dx: Math.random() * 1 - 0.5,
-    dy: Math.random() * 1 - 0.5,
-  });
-}
-
-function drawFireflies() {
-  ctx.clearRect(0, 0, width, height);
-  for (let i = 0; i < fireflies.length; i++) {
-    let f = fireflies[i];
-    ctx.beginPath();
-    ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(0, 255, 255, 0.7)";
-    ctx.fill();
-    f.x += f.dx;
-    f.y += f.dy;
-
-    if (f.x < 0 || f.x > width) f.dx *= -1;
-    if (f.y < 0 || f.y > height) f.dy *= -1;
+    dot.animate(
+      [
+        { transform: "translate(0, 0)", opacity: 1 },
+        { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+      ],
+      { duration: 1000, easing: "ease-out" }
+    ).onfinish = () => dot.remove();
   }
-  requestAnimationFrame(drawFireflies);
-}
-
-drawFireflies();
+});
