@@ -42,43 +42,139 @@ canvas {
   z-index: -1;
 }
 
-/* Loading Screen */
-.loading-screen {...}
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-/* Main Container */
-.main-container {...}
+.logo-card {
+  background: rgba(0, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  border: 2px solid var(--accent);
+  margin-bottom: 20px;
+  transition: transform 0.6s ease;
+}
 
-/* Logo Card */
-.logo-card {...}
+.logo {
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--accent);
+}
 
-.start-bounce {...}
+.name {
+  font-size: 24px;
+  margin-top: 10px;
+}
 
-@keyframes bounceDown {...}
+.subtext {
+  font-size: 16px;
+  font-style: italic;
+  margin-top: 5px;
+}
 
-.logo {...}
-.name {...}
-.subtext {...}
+/* Bounce animation */
+.start-bounce {
+  animation: bounceDown 2s ease-out;
+}
 
-/* Description Text */
-.description p {...}
-.description {...}
-.desc-bounce {...}
-@keyframes descAppear {...}
+@keyframes bounceDown {
+  0% { transform: translateY(-300px); }
+  50% { transform: translateY(20px); }
+  70% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
 
-/* Buttons */
-.buttons {...}
-.btn-bounce {...}
-@keyframes btnPop {...}
-.buttons a {...}
-.buttons a:hover {...}
-.buttons i {...}
+.description p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
 
-/* Effects */
-.hidden {...}
-.water-drop {...}
-@keyframes splash-fall {...}
-.ripple {...}
-@keyframes ripple-explode {...}
+.description {
+  opacity: 0;
+  animation: descAppear 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.desc-bounce {
+  opacity: 1;
+  animation: descAppear 1s ease forwards;
+}
+
+@keyframes descAppear {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.buttons a {
+  background: var(--accent);
+  padding: 10px 18px;
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+.buttons a:hover {
+  transform: scale(1.1);
+  background: #00f2f2;
+}
+
+.btn-bounce {
+  animation: btnPop 0.7s ease-out;
+}
+
+@keyframes btnPop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Visual FX */
+.hidden {
+  display: none;
+}
+
+.water-drop {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #0ff;
+  border-radius: 50%;
+  animation: splash-fall 1s linear;
+  pointer-events: none;
+}
+
+@keyframes splash-fall {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(50vh); }
+}
+
+.ripple {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ripple-explode 0.7s ease-out;
+}
+
+@keyframes ripple-explode {
+  0% { transform: scale(0.1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
 
 /* Particle Trail */
 .particle {
