@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@la.kawaguchi / vaibhav</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -17,27 +17,43 @@
   <canvas id="waves"></canvas>
 
   <div class="main-container" id="mainContent" style="display:none;">
-    <div class="logo-card">
-      <div class="logo">Vk</div>
-      <div class="name">@Vaibhav</div>
+    <div class="logo-card bounce-box" id="logoBox">
+      <div class="logo">V</div>
+      <div class="name">@la.kawaguchi / vaibhav</div>
       <div class="subtext">coder</div>
     </div>
-    <div class="description">
-      <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building. Birthday at 17 February. I sometimes play roblox when my friends are desperate over it.</p>
+    <div class="description hidden" id="descBox">
+      <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building.</p>
     </div>
-    <div class="buttons">
-      <a href="https://x.com/Nonetheless099" target="_blank"><i class="fab fa-twitter"></i> Find Twitter</a>
-      <a href="https://discord.com/users/la.kawaguchi" target="_blank"><i class="fab fa-discord"></i> My Discord</a>
+    <div class="buttons hidden" id="btnBox">
+      <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      <a href="https://discord.com/users/la.kawaguchi" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+      <a href="#">Tithing</a>
     </div>
   </div>
 
   <script>
-    window.onload = function() {
+    window.onload = function () {
       setTimeout(() => {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
+        document.getElementById("loading").style.display = "none";
+        const main = document.getElementById("mainContent");
+        main.style.display = "block";
+
+        const logoBox = document.getElementById("logoBox");
+        logoBox.classList.add("start-bounce");
+
+        setTimeout(() => {
+          document.getElementById("descBox").classList.remove("hidden");
+          document.getElementById("descBox").classList.add("desc-bounce");
+
+          setTimeout(() => {
+            const btn = document.getElementById("btnBox");
+            btn.classList.remove("hidden");
+            btn.classList.add("btn-bounce");
+          }, 1000);
+        }, 2400);
       }, 1800);
-    }
+    };
   </script>
 
   <script src="waves.js"></script>
