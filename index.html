@@ -8,11 +8,9 @@
   <script defer src="waves.js"></script>
 </head>
 <body>
-  <!-- Loading Screen -->
+  <!-- Typing Loader -->
   <div class="loading-screen" id="loading">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+    <div class="typing-loader"><span id="typed-text"></span><span class="cursor">|</span></div>
   </div>
 
   <!-- Light/Dark Toggle -->
@@ -20,14 +18,14 @@
 
   <!-- Main Content -->
   <div class="main-container hidden" id="main">
-    <div class="logo-card start-bounce">
+    <div class="logo-card" id="logoBox">
       <div class="logo">V</div>
       <div class="name">Vaibhav</div>
       <div class="subtext">Coder</div>
     </div>
 
     <div class="description desc-bounce">
-      <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building. I have many shit friends! My bday is on 17 February.</p>
+      <p>Hello! I'm Vaibhav — passionate about coding, bots, and crafting beautiful digital experiences. Always learning, always building.</p>
     </div>
 
     <div class="buttons btn-bounce" id="buttonGroup">
@@ -40,11 +38,44 @@
   <audio id="splash-sound" src="splash.mp3" preload="auto"></audio>
 
   <script>
-    // Loading screen logic
-    window.addEventListener('load', () => {
+    // Typing effect setup
+    const text = 'Loading Vaibhav...';
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        document.getElementById('typed-text').textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 80);
+      } else {
+        setTimeout(() => startMainContent(), 600);
+      }
+    }
+
+    function startMainContent() {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('main').classList.remove('hidden');
-    });
+      fallLogo();
+      burstParticles();
+    }
+
+    function fallLogo() {
+      const box = document.getElementById('logoBox');
+      box.classList.add('start-bounce');
+    }
+
+    function burstParticles() {
+      for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = `${window.innerWidth / 2}px`;
+        p.style.top = `${window.innerHeight / 2}px`;
+        p.style.setProperty('--dx', `${Math.random() * 200 - 100}px`);
+        p.style.setProperty('--dy', `${Math.random() * 200 - 100}px`);
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 1000);
+      }
+    }
 
     function toggleMode() {
       document.body.classList.toggle('light-mode');
@@ -54,10 +85,12 @@
       const buttons = document.querySelectorAll('#buttonGroup a');
       buttons.forEach(btn => {
         btn.classList.remove('btn-bounce');
-        void btn.offsetWidth; // trigger reflow
+        void btn.offsetWidth; // reflow
         btn.classList.add('btn-bounce');
       });
     }
+
+    window.onload = type;
   </script>
 </body>
 </html>
