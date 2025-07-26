@@ -42,14 +42,15 @@ canvas {
   z-index: -2;
 }
 
+/* ✅ Real working SVG wave background */
 .wave-bg {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 100px;
-  background: url('https://raw.githubusercontent.com/anars/blank-audio/master/1-second-of-silence.mp3');
+  height: 200px;
+  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyB2aWV3Qm94PScwIDAgMTAwMCAxMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTAgNzVIMTAwMFYxMDBIMFY3NVonIGZpbGw9JyMwZmYnLz48cGF0aCBkPSdNIDAgNjAgQyA1MCA3NSA3NSA1NSA4MDAgNjAgTCAxMDAwIDUwIFYgMTAwIEggMCBaJyBmaWxsPSIjMGZmIiBvcGFjaXR5PSIwLjI1Ii8+PC9zdmc+') no-repeat bottom;
   background-size: cover;
-  opacity: 0.2;
+  opacity: 0.5;
   z-index: -2;
 }
 
@@ -60,6 +61,10 @@ canvas {
   align-items: center;
   justify-content: center;
   text-align: center;
+  backdrop-filter: blur(2px);
+  z-index: 1;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .logo-card {
@@ -69,6 +74,7 @@ canvas {
   border: 2px solid var(--accent);
   margin-bottom: 20px;
   transition: transform 0.6s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
 .logo {
@@ -202,6 +208,48 @@ canvas {
     transform: translate(var(--dx), var(--dy));
     opacity: 0;
   }
+}
+
+/* Glitch Background */
+.glitch-bg::before,
+.glitch-bg::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: -1;
+  animation: hueShift 10s infinite linear;
+}
+
+.glitch-bg::before {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.08;
+}
+
+.glitch-bg::after {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.08;
+}
+
+@keyframes hueShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
 }
 
 /* Utility */
