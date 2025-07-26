@@ -39,7 +39,18 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: -2;
+}
+
+.wave-bg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: url('https://raw.githubusercontent.com/anars/blank-audio/master/1-second-of-silence.mp3');
+  background-size: cover;
+  opacity: 0.2;
+  z-index: -2;
 }
 
 .main-container {
@@ -49,24 +60,16 @@ canvas {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: rgba(0, 0, 0, 0.6); 
-  backdrop-filter: blur(2px);     
-  z-index: 1;
-  padding: 20px;
-  border-radius: 20px;
 }
 
-
 .logo-card {
-  background: rgba(0, 255, 255, 0.07);  /* more transparent */
+  background: rgba(0, 255, 255, 0.1);
   padding: 30px;
   border-radius: 20px;
   border: 2px solid var(--accent);
   margin-bottom: 20px;
   transition: transform 0.6s ease;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
-
 
 .logo {
   font-size: 50px;
@@ -77,65 +80,6 @@ canvas {
 .name {
   font-size: 24px;
   margin-top: 10px;
-  position: relative;
-  display: inline-block;
-  color: var(--accent);
-  animation: glitchWrite 3s steps(1, end) forwards;
-  overflow: hidden;
-}
-
-@keyframes glitchWrite {
-  0% { width: 0; }
-  100% { width: 100%; }
-}
-
-.name::before,
-.name::after {
-  content: 'Vaibhav';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  color: var(--accent);
-  z-index: -1;
-}
-
-.name::before {
-  text-shadow: -2px 0 red;
-  animation: glitch1 1s infinite linear alternate-reverse;
-}
-
-.name::after {
-  text-shadow: 2px 0 blue;
-  animation: glitch2 1.2s infinite linear alternate-reverse;
-}
-
-@keyframes glitch1 {
-  0% { clip-path: inset(0 0 90% 0); }
-  10% { clip-path: inset(10% 0 85% 0); }
-  20% { clip-path: inset(15% 0 70% 0); }
-  30% { clip-path: inset(40% 0 30% 0); }
-  40% { clip-path: inset(60% 0 20% 0); }
-  50% { clip-path: inset(80% 0 10% 0); }
-  60% { clip-path: inset(30% 0 40% 0); }
-  70% { clip-path: inset(20% 0 50% 0); }
-  80% { clip-path: inset(10% 0 60% 0); }
-  90% { clip-path: inset(0 0 80% 0); }
-  100% { clip-path: inset(0 0 90% 0); }
-}
-
-@keyframes glitch2 {
-  0% { clip-path: inset(80% 0 0 0); }
-  10% { clip-path: inset(70% 0 10% 0); }
-  20% { clip-path: inset(60% 0 20% 0); }
-  30% { clip-path: inset(30% 0 40% 0); }
-  40% { clip-path: inset(10% 0 60% 0); }
-  50% { clip-path: inset(0 0 80% 0); }
-  60% { clip-path: inset(20% 0 50% 0); }
-  70% { clip-path: inset(40% 0 30% 0); }
-  80% { clip-path: inset(60% 0 10% 0); }
-  90% { clip-path: inset(70% 0 10% 0); }
-  100% { clip-path: inset(80% 0 0 0); }
 }
 
 .subtext {
@@ -260,77 +204,7 @@ canvas {
   }
 }
 
-/* Glitch BG + Hue Shift */
-.glitch-bg::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.025) 0px,
-    rgba(255, 255, 255, 0.025) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  animation: glitchNoise 0.35s infinite, hueShift 6s infinite alternate;
-  pointer-events: none;
-  z-index: -3;
-  mix-blend-mode: overlay;
-  filter: contrast(1.3);
-}
-
-@keyframes glitchNoise {
-  0%, 100% { transform: translate(0, 0); }
-  30%  { transform: translate(-1px, 1px); }
-  60%  { transform: translate(2px, -1px); }
-}
-
-@keyframes hueShift {
-  0%   { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(45deg); }
-}
-
 /* Utility */
 .hidden {
   display: none;
-}
-.glitch-bg {
-  position: relative;
-  overflow: hidden;
-}
-
-.glitch-bg::before,
-.glitch-bg::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255,255,255,0.02),
-    rgba(255,255,255,0.02) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  z-index: 0;
-  animation: hueShift 10s infinite linear;
-}
-
-.glitch-bg::after {
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255,255,255,0.02),
-    rgba(255,255,255,0.02) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-}
-
-@keyframes hueShift {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
 }
