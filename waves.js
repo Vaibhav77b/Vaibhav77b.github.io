@@ -33,3 +33,39 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
+// 🔊 Load splash sound
+const splashSound = new Audio("splash.mp3");
+
+// 💧 Water drop every second
+function createSplash() {
+  const drop = document.createElement('div');
+  drop.classList.add('water-drop');
+  drop.style.left = Math.random() * 100 + 'vw';
+  drop.style.top = Math.random() * 80 + 'vh';
+
+  document.body.appendChild(drop);
+  splashSound.currentTime = 0;
+  splashSound.play();
+
+  createRipple(drop.style.left, drop.style.top);
+
+  setTimeout(() => drop.remove(), 3000);
+}
+
+setInterval(createSplash, 1000);
+
+// 🌊 Ripple effect
+function createRipple(x, y) {
+  const ripple = document.createElement("div");
+  ripple.classList.add("ripple");
+  ripple.style.left = x;
+  ripple.style.top = y;
+  document.body.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 700);
+}
+
+// 🖱️ Ripple on mouse move
+document.addEventListener("mousemove", e => {
+  createRipple(`${e.clientX}px`, `${e.clientY}px`);
+});
