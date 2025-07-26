@@ -288,3 +288,41 @@ canvas {
 .hidden {
   display: none;
 }
+.glitch-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-bg::before,
+.glitch-bg::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+  animation: hueShift 10s infinite linear;
+}
+
+.glitch-bg::after {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@keyframes hueShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
