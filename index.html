@@ -1,59 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>! Nonetheless profile</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>Your Name</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="loader">
-    <div class="spinner"></div>
-    <p class="quote" id="quote">Loading...</p>
-  </div>
-
-  <video autoplay muted loop id="bgVideo">
-    <source src="assets/bg.mp4" type="video/mp4" />
-  </video>
-
-  <div id="mainContent">
-    <div class="central-box">
-      <div class="section">
-        <h2>Anime Edits</h2>
-        <p>Watch %: 82%</p>
-      </div>
-      <div class="section">
-        <h2>Car Edits</h2>
-        <p>Watch %: 69%</p>
-      </div>
-      <div class="section">
-        <h2>Cat Edits</h2>
-        <p>Watch %: 91%</p>
-      </div>
-      <button id="playBtn">Click to Play</button>
+  <div id="container">
+    <div id="about">
+      <h1>Your Name</h1>
+      <p>A passionate creator blending visual design, motion, and storytelling.</p>
+    </div>
+    <div id="canvas‑holder">
+      <video id="bgVideo" autoplay muted loop playsinline>
+        <source src="assets/bg.mp4" type="video/mp4">
+      </video>
+      <canvas id="waveCanvas"></canvas>
     </div>
   </div>
-
-  <div id="playerOverlay">
-    <div class="overlay-bg"></div>
-    <video id="editVideo" autoplay loop muted playsinline>
-      <source src="assets/edit1.mp4" type="video/mp4" />
-    </video>
-
-    <!-- 🔷 Banner -->
-    <div class="top-banner">Nonetheless</div>
-
-    <!-- 👨‍💻 About Me -->
-    <div class="about-me">
-      I’m <strong>Vaibhav</strong> — I'm one from the skibidi sigmas and i like making projects based mostly on python and javascript. you should note that my skibidi is fire!
-    </div>
-
-    <!-- 🎬 Now Playing / Mute -->
-    <div class="now-playing">🎬 Now Playing</div>
-    <button id="muteToggle">🔇</button>
-  </div>
-
-  <script src="script.js"></script>
+  <script src="waves.js"></script>
 </body>
 </html>
