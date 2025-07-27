@@ -1,195 +1,22 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Orbitron', sans-serif;
-  overflow: hidden;
-  background: black;
-  color: white;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { width:100%; height:100%; overflow:hidden; font-family: sans-serif; background: #010A12; color: #FFFFFF; }
 
+#container { display: flex; height:100vh; }
+#about {
+  width: 30%; padding: 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+#about h1 { font-size: 3rem; margin-bottom: 1rem; }
+#about p { font-size: 1.2rem; line-height: 1.5; opacity: 0.8; }
+
+#canvas-holder {
+  position: relative;
+  width:70%; overflow:hidden;
+}
 #bgVideo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
+  position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0;
 }
-
-#loader {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  color: cyan;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 100;
-}
-
-.spinner {
-  border: 6px solid rgba(255,255,255,0.2);
-  border-top: 6px solid cyan;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
-.quote {
-  margin-top: 15px;
-  font-size: 1rem;
-  text-align: center;
-  color: white;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
-#mainContent {
-  display: none;
-  text-align: center;
-  padding-top: 50px;
-}
-
-.central-box {
-  margin: auto;
-  background: rgba(0,0,0,0.7);
-  border: 2px solid cyan;
-  border-radius: 20px;
-  padding: 30px;
-  width: 90%;
-  max-width: 600px;
-}
-
-.section {
-  margin: 20px 0;
-}
-
-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: cyan;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
-  color: black;
-}
-
-#playerOverlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 101;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: rgba(0,0,0,0.9);
-}
-
-#editVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  z-index: -1;
-  filter: brightness(0.9);
-}
-
-.overlay-bg {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.4), rgba(0,0,0,0.8));
-  z-index: 0;
-}
-
-/* 🔷 Top Banner */
-.top-banner {
-  position: absolute;
-  top: 25px;
-  width: 100%;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: cyan;
-  text-shadow: 0 0 8px cyan;
-  z-index: 3;
-}
-
-/* 👨‍💻 About Me */
-.about-me {
-  position: absolute;
-  bottom: 100px;
-  text-align: center;
-  max-width: 80%;
-  color: white;
-  font-size: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 12px 24px;
-  border-radius: 10px;
-  z-index: 3;
-}
-
-.now-playing {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  color: #00ffff;
-  font-size: 1.2rem;
-  z-index: 2;
-}
-
-#muteToggle {
-  position: absolute;
-  bottom: 20px;
-  right: 30px;
-  font-size: 20px;
-  background: transparent;
-  color: white;
-  border: none;
-  z-index: 2;
-  cursor: pointer;
-}
-/* Transitions */
-#mainContent,
-#playerOverlay {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-.show {
-  opacity: 1;
-}
-
-#editVideo {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.fade-in-video {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.top-banner,
-.about-me {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.slide-in {
-  opacity: 1;
-  transform: translateY(0);
+#waveCanvas {
+  position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;
+  pointer-events: none;
 }
