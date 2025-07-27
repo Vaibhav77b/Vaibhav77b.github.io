@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("loader");
   const container = document.getElementById("container");
-  const about = document.getElementById("about");
-  const bgVideo = document.getElementById("bgVideo");
-  const waveCanvas = document.getElementById("waveCanvas");
 
   let burst = false;
   let t = 0;
