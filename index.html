@@ -1,35 +1,189 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nonetheless</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: black;
+      color: white;
+      overflow: hidden;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #00f7ff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .quote {
+      color: #aaa;
+      font-size: 1.2rem;
+      text-align: center;
+      max-width: 80%;
+    }
+
+    .main-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .content-box, .banner-box {
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid #00f7ff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 30px #00f7ff30;
+      max-width: 90%;
+      width: 600px;
+    }
+
+    .edit-section {
+      margin-bottom: 20px;
+    }
+
+    .edit-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .percentage {
+      font-size: 1rem;
+      color: #0ff;
+    }
+
+    .play-button {
+      margin-top: 20px;
+      background: #00f7ff;
+      color: black;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .play-button:hover {
+      background: #00d4d4;
+    }
+  </style>
 </head>
 <body>
-  <div class="loader-wrapper" id="loader">
-    <div class="loader"></div>
-    <p>Loading...</p>
-  </div>
-
-  <video autoplay muted loop id="bg-video">
-    <source src="assets/bg.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
+  <video class="bg-video" autoplay muted loop>
+    <source src="assets/bg.mp4" type="video/mp4">
   </video>
 
-  <div class="banner-box">
-    <img src="assets/banner.png" alt="Banner" class="banner"/>
+  <div class="loading-screen" id="loadingScreen">
+    <div class="spinner"></div>
+    <div class="quote" id="quoteText">Loading...</div>
   </div>
 
-  <div class="main-box">
-    <div class="card">
-      <h1>Nonetheless</h1>
-      <p class="sub">vaibhav71b.github.io</p>
-      <p class="desc">Welcome to my profile! I'm a developer passionate about creating awesome experiences. Feel free to check out my projects and get in touch!</p>
+  <div class="main-container" id="mainContent">
+    <div class="banner-box">
+      <img src="assets/banner.png" alt="Banner" style="width: 100%; border-radius: 15px;">
+    </div>
+
+    <div class="content-box">
+      <div class="edit-section">
+        <div class="edit-title">Anime Edits</div>
+        <div class="percentage">Watch %: 92%</div>
+      </div>
+      <div class="edit-section">
+        <div class="edit-title">Car Edits</div>
+        <div class="percentage">Watch %: 85%</div>
+      </div>
+      <div class="edit-section">
+        <div class="edit-title">Cat Edits</div>
+        <div class="percentage">Watch %: 78%</div>
+      </div>
+      <button class="play-button" onclick="playRandomEdit()">Click to Play</button>
     </div>
   </div>
 
-  <script src="loader.js"></script>
+  <script>
+    const quotes = [
+      '“A lesson without pain is meaningless.” – Fullmetal Alchemist',
+      '“It’s not the car you drive, it’s the driver.” – Fast & Furious',
+      '“The smallest feline is a masterpiece.” – Leonardo da Vinci',
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const quoteText = document.getElementById("quoteText");
+      let quoteIndex = 0;
+
+      const rotateQuotes = setInterval(() => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteText.textContent = quotes[quoteIndex];
+      }, 1500);
+
+      setTimeout(() => {
+        clearInterval(rotateQuotes);
+        document.getElementById("loadingScreen").style.opacity = "0";
+        setTimeout(() => {
+          document.getElementById("loadingScreen").style.display = "none";
+          document.getElementById("mainContent").style.display = "flex";
+        }, 500);
+      }, 4000);
+    });
+
+    function playRandomEdit() {
+      const videos = [
+        'assets/edit1.mp4',
+        'assets/edit2.mp4',
+        'assets/edit3.mp4',
+      ];
+      const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+      window.location.href = randomVideo; // Or open in new tab
+    }
+  </script>
 </body>
 </html>
