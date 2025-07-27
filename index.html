@@ -4,41 +4,142 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nonetheless</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: black;
+      overflow: hidden;
+      color: white;
+    }
+
+    #loading-screen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid white;
+      border-top: 4px solid cyan;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .quote {
+      font-size: 18px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    #main-content {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .profile-box {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      border: 2px solid cyan;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    .edit-box {
+      margin-top: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid cyan;
+    }
+  </style>
 </head>
 <body>
-  <video class="bg-video" autoplay muted loop>
-    <source src="assets/bg.mp4" type="video/mp4">
-  </video>
-
-  <div class="loading-screen" id="loadingScreen">
+  <div id="loading-screen">
     <div class="spinner"></div>
-    <div class="quote" id="quoteText">Loading...</div>
+    <div class="quote" id="quote"></div>
   </div>
 
-  <div class="main-container" id="mainContent">
-    <div class="banner-box">
-      <img src="assets/banner.png" alt="Banner" style="width: 100%; border-radius: 15px;">
-    </div>
+  <div id="main-content">
+    <video class="bg-video" autoplay muted loop id="bgVideo">
+      <source src="assets/bg.mp4" type="video/mp4" />
+    </video>
 
-    <div class="content-box">
-      <div class="edit-section">
-        <div class="edit-title">Anime Edits</div>
-        <div class="percentage">Watch %: 92%</div>
+    <div class="profile-box">
+      <img src="assets/banner.png" style="width: 100%; border-radius: 10px; margin-bottom: 15px;" />
+      <h1>Nonetheless</h1>
+      <p style="opacity: 0.7; font-size: 14px;">vaibhav77b.github.io</p>
+      <p style="margin-top: 10px; font-size: 14px;">Welcome to my profile! I'm a developer passionate about creating awesome experiences. Feel free to check out my projects and get in touch!</p>
+
+      <div class="edit-box">
+        <h3>Anime Edits</h3>
+        <p>Watched: 78%</p>
       </div>
-      <div class="edit-section">
-        <div class="edit-title">Car Edits</div>
-        <div class="percentage">Watch %: 85%</div>
+      <div class="edit-box">
+        <h3>Car Edits</h3>
+        <p>Watched: 55%</p>
       </div>
-      <div class="edit-section">
-        <div class="edit-title">Cat Edits</div>
-        <div class="percentage">Watch %: 78%</div>
+      <div class="edit-box">
+        <h3>Cat Edits</h3>
+        <p>Watched: 65%</p>
       </div>
-      <button class="play-button" onclick="playRandomEdit()">Click to Play</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const quotes = [
+      '"Power comes in response to a need, not a desire." – Goku',
+      '"There’s no greater feeling than getting behind the wheel." – Car Enthusiast',
+      '"Time spent with cats is never wasted." – Freud',
+      '"I’m gonna be King of the Pirates!" – Luffy',
+      '"Cars are not just transportation—they’re emotion."',
+      '"Meow means woof in cat."'
+    ];
+
+    document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+
+    setTimeout(() => {
+      document.getElementById("loading-screen").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 4000);
+  </script>
 </body>
 </html>
