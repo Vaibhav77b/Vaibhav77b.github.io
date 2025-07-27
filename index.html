@@ -6,28 +6,19 @@
   <title>Your Name</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- Spherical Loading -->
-  <div id="loader">
-    <canvas id="loaderCanvas"></canvas>
-  </div>
-
-  <!-- Main Content -->
-  <div id="container" class="hidden">
-    <div id="about">
+<body class="fade-in">
+  <div id="container">
+    <div id="about" class="show">
       <h1>Your Name</h1>
-      <p>A passionate creator blending visual design, motion, and storytelling.</p>
+      <p>Your bio goes here.</p>
     </div>
     <div id="canvas-holder">
-      <video id="bgVideo" autoplay muted loop playsinline>
+      <video id="bgVideo" autoplay muted loop playsinline class="reveal">
         <source src="assets/bg.mp4" type="video/mp4" />
-        Your browser does not support HTML5 video.
       </video>
-      <canvas id="waveCanvas"></canvas>
+      <canvas id="waveCanvas" class="reveal"></canvas>
     </div>
   </div>
-
-  <script src="waves.js"></script>
-  <script src="loader.js"></script>
 </body>
-</html>
+
+<html>
