@@ -1,47 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nonetheless</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <!-- Loading screen -->
-  <div id="loading-screen">
-    <div class="spinner"></div>
-    <p class="loading-text">Loading awesomeness...</p>
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+    <p>Loading...</p>
   </div>
 
-  <!-- Background Video -->
   <video autoplay muted loop id="bg-video">
-    <source src="background.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
+    <source src="assets/bg.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
 
-  <!-- Main content -->
-  <div class="container">
-    <!-- Banner Box -->
-    <div class="banner-box">
-      <h2 class="title">Nonetheless</h2>
-      <p class="subtitle">vaibhav77b.github.io</p>
-    </div>
+  <div class="banner-box">
+    <img src="assets/banner.png" alt="Banner" class="banner"/>
+  </div>
 
-    <!-- Info Box -->
-    <div class="info-box">
-      <p>
-        Welcome to my profile! I'm a developer passionate about creating awesome experiences. Feel free to check out my projects and get in touch!
-      </p>
+  <div class="main-box">
+    <div class="card">
+      <h1>Nonetheless</h1>
+      <p class="sub">vaibhav71b.github.io</p>
+      <p class="desc">Welcome to my profile! I'm a developer passionate about creating awesome experiences. Feel free to check out my projects and get in touch!</p>
     </div>
   </div>
 
-  <script>
-    // Hide loading screen after 2s
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loading-screen").style.display = "none";
-      }, 2000);
-    });
-  </script>
+  <script src="loader.js"></script>
 </body>
 </html>
