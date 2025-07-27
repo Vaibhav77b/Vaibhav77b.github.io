@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>! Nonetheless profile</title>
+  <title>Sphericall</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Loader -->
   <div id="loader">
     <canvas id="loaderCanvas"></canvas>
   </div>
 
+  <!-- Main Content -->
   <div id="container" class="hidden">
-    <div id="about" class="show">
-      <h1>Nonetheles</h1>
-      <p>A passionate creator blending design, motion, and storytelling.</p>
-    </div>
+    <video id="bgVideo" autoplay muted loop playsinline>
+      <source src="assets/bg.mp4" type="video/mp4" />
+    </video>
 
-    <div id="canvas-holder">
-      <video id="bgVideo" autoplay muted loop playsinline class="reveal">
-        <source src="assets/bg.mp4" type="video/mp4" />
-      </video>
-      <canvas id="waveCanvas" class="reveal"></canvas>
+    <canvas id="waveCanvas"></canvas>
+
+    <div id="about">
+      <h1>nio</h1>
+      <p>A passionate creator blending design, motion, and storytelling.</p>
     </div>
   </div>
 
