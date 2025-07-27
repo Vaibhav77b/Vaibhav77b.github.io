@@ -3,7 +3,6 @@ const ctx = canvas.getContext("2d");
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
-let circles = [];
 let t = 0;
 let burst = false;
 
@@ -29,7 +28,6 @@ function drawLoader() {
 
 drawLoader();
 
-// After 3 seconds, burst then transition
 setTimeout(() => {
   burst = true;
 
@@ -38,9 +36,8 @@ setTimeout(() => {
     document.getElementById("container").classList.remove("hidden");
     document.body.classList.add("fade-in");
 
-    // trigger about + bg + canvas reveal if needed
     document.getElementById("about").classList.add("show");
     document.getElementById("bgVideo").classList.add("reveal");
     document.getElementById("waveCanvas").classList.add("reveal");
-  }, 1200); // burst duration
+  }, 1200);
 }, 3000);

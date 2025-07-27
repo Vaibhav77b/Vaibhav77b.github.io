@@ -1,25 +1,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body, html { width:100%; height:100%; overflow:hidden; font-family: sans-serif; background: #010A12; color: #FFFFFF; }
 
-#container { display: flex; height:100vh; }
-#about {
-  width: 30%; padding: 4rem;
-  display: flex; flex-direction: column; justify-content: center;
-}
-#about h1 { font-size: 3rem; margin-bottom: 1rem; }
-#about p { font-size: 1.2rem; line-height: 1.5; opacity: 0.8; }
-
-#canvas-holder {
-  position: relative;
-  width:70%; overflow:hidden;
-}
-#bgVideo {
-  position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0;
-}
-#waveCanvas {
-  position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;
-  pointer-events: none;
-}
 #loader {
   position: fixed;
   width: 100%;
@@ -34,6 +15,40 @@ body, html { width:100%; height:100%; overflow:hidden; font-family: sans-serif; 
 #loaderCanvas {
   width: 200px;
   height: 200px;
+}
+
+#container { display: flex; height:100vh; }
+#about {
+  width: 30%; padding: 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 1.2s ease, opacity 1.2s ease;
+}
+#about.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#canvas-holder {
+  position: relative;
+  width:70%; overflow:hidden;
+}
+#bgVideo, #waveCanvas {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.reveal {
+  opacity: 1;
+}
+
+body {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+body.fade-in {
+  opacity: 1;
 }
 
 .hidden {
