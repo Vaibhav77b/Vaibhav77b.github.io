@@ -1,3 +1,4 @@
+// Loader Quotes
 const quotes = [
   "Anime: Believe in the edit!",
   "Cars: Speed meets precision.",
@@ -13,17 +14,32 @@ const interval = setInterval(() => {
   i++;
 }, 1200);
 
+// Hide loader, show main
 setTimeout(() => {
   clearInterval(interval);
   loader.style.display = "none";
-  mainContent.style.display = "block";
+  mainContent.classList.add("show");
 }, 4000);
 
+// Play button logic
 document.getElementById("playBtn").addEventListener("click", () => {
-  document.getElementById("mainContent").style.display = "none";
-  document.getElementById("playerOverlay").style.display = "flex";
+  mainContent.style.display = "none";
+
+  const overlay = document.getElementById("playerOverlay");
+  const video = document.getElementById("editVideo");
+  const banner = document.querySelector(".top-banner");
+  const about = document.querySelector(".about-me");
+
+  overlay.classList.add("show");
+
+  setTimeout(() => {
+    video.classList.add("fade-in-video");
+    banner.classList.add("slide-in");
+    about.classList.add("slide-in");
+  }, 300);
 });
 
+// Mute button toggle
 const muteToggle = document.getElementById("muteToggle");
 const video = document.getElementById("editVideo");
 muteToggle.addEventListener("click", () => {
