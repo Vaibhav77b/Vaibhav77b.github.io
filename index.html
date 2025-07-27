@@ -2,31 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nonetheless</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-container"></div>
+  <!-- Loading screen -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <p class="loading-text">Loading awesomeness...</p>
+  </div>
 
-  <div class="container glass">
-    <img src="pfp.png" class="avatar" />
-    <div class="banner-bg">
-  <img src="banner.jpg" alt="Banner" />
-</div>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="background.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
 
-    <h1 class="glitch" data-text="NONETHELESS">NONETHELESS</h1>
-    <p class="subtitle">Developer & Designer</p>
-    <p class="desc">
-      Welcome to my profile! I'm passionate about bots, effects, and fun web tricks.
-      Always learning. Always building. Click below to connect!
-    </p>
-    <div class="btn-group">
-      <a href="https://discord.com" target="_blank">Discord</a>
-      <a href="https://twitter.com" target="_blank">Twitter</a>
+  <!-- Main content -->
+  <div class="container">
+    <!-- Banner Box -->
+    <div class="banner-box">
+      <h2 class="title">Nonetheless</h2>
+      <p class="subtitle">vaibhav77b.github.io</p>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box">
+      <p>
+        Welcome to my profile! I'm a developer passionate about creating awesome experiences. Feel free to check out my projects and get in touch!
+      </p>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Hide loading screen after 2s
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loading-screen").style.display = "none";
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
