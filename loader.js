@@ -40,11 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       loader.style.display = "none";
       container.classList.remove("hidden");
-      document.body.classList.add("fade-in");
-
-      if (about) about.classList.add("show");
-      if (bgVideo) bgVideo.classList.add("reveal");
-      if (waveCanvas) waveCanvas.classList.add("reveal");
     }, 1200);
   }, 3000);
 });

@@ -1,26 +1,23 @@
 const canvas = document.getElementById('waveCanvas');
 const ctx = canvas.getContext('2d');
-let w, h, t = 0;
-function resize(){ w=canvas.width=canvas.offsetWidth; h=canvas.height=canvas.offsetHeight; }
-window.addEventListener('resize', resize);
-resize();
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-function draw(){
-  ctx.clearRect(0,0,w,h);
-  const cx = w * 0.5;
-  const cy = h * 0.5;
-  const maxR = Math.hypot(cx, cy);
-  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-  ctx.lineWidth = 2;
-  for(let i=0;i<8;i++){
-    const r = maxR * (i+1)/8;
-    ctx.beginPath();
-    const phase = t*0.002 + i*0.3;
-    const amp = Math.sin(phase)*20;
-    ctx.arc(cx, cy, r+amp, 0, 2*Math.PI);
-    ctx.stroke();
+function drawWaves() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const time = Date.now() * 0.002;
+
+  ctx.beginPath();
+  for (let x = 0; x < canvas.width; x++) {
+    const y = 200 + Math.sin(x * 0.01 + time) * 20;
+    ctx.lineTo(x, y);
   }
-  t++;
-  requestAnimationFrame(draw);
+
+  ctx.strokeStyle = 'rgba(0, 255, 255, 0.6)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  requestAnimationFrame(drawWaves);
 }
-draw();
+
+drawWaves();

@@ -1,56 +1,62 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { width:100%; height:100%; overflow:hidden; font-family: sans-serif; background: #010A12; color: #FFFFFF; }
-
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
 #loader {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 1000;
 }
-
 #loaderCanvas {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
-
-#container { display: flex; height:100vh; }
-#about {
-  width: 30%; padding: 4rem;
-  display: flex; flex-direction: column; justify-content: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: transform 1.2s ease, opacity 1.2s ease;
-}
-#about.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#canvas-holder {
-  position: relative;
-  width:70%; overflow:hidden;
-}
-#bgVideo, #waveCanvas {
-  position:absolute; top:0; left:0; width:100%; height:100%;
-  opacity: 0;
-  transition: opacity 1.5s ease;
-}
-.reveal {
-  opacity: 1;
-}
-
-body {
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-body.fade-in {
-  opacity: 1;
-}
-
-.hidden {
+#container.hidden {
   display: none;
+}
+#container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#canvas-holder {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.4;
+}
+#waveCanvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
+}
+#about {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  max-width: 600px;
+  margin: 80px auto 0;
+  text-align: center;
 }

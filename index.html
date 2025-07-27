@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF‑8">
-  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
-  <title>Your Name</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spherical Waves Site</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="fade-in">
-  <div id="container">
+<body>
+  <div id="loader">
+    <canvas id="loaderCanvas"></canvas>
+  </div>
+
+  <div id="container" class="hidden">
     <div id="about" class="show">
       <h1>Your Name</h1>
-      <p>Your bio goes here.</p>
+      <p>A passionate creator blending design, motion, and storytelling.</p>
     </div>
+
     <div id="canvas-holder">
       <video id="bgVideo" autoplay muted loop playsinline class="reveal">
         <source src="assets/bg.mp4" type="video/mp4" />
@@ -19,6 +24,8 @@
       <canvas id="waveCanvas" class="reveal"></canvas>
     </div>
   </div>
-</body>
 
-<html>
+  <script src="waves.js"></script>
+  <script src="loader.js"></script>
+</body>
+</html>
