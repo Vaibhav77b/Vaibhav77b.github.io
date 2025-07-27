@@ -1,34 +1,24 @@
+
+const loadingScreen = document.getElementById('loadingScreen');
+const mainContent = document.getElementById('mainContent');
+const quoteText = document.getElementById('quoteText');
 const quotes = [
-  '“A lesson without pain is meaningless.” – Fullmetal Alchemist',
-  '“It’s not the car you drive, it’s the driver.” – Fast & Furious',
-  '“The smallest feline is a masterpiece.” – Leonardo da Vinci',
+  '“Power comes in response to a need, not a desire.” – Goku',
+  '“Speed has never killed anyone. Suddenly becoming stationary, that’s what gets you.” – Jeremy Clarkson',
+  '“Time spent with cats is never wasted.” – Sigmund Freud'
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
-  const quoteText = document.getElementById("quoteText");
-  let quoteIndex = 0;
+let currentQuote = 0;
+setInterval(() => {
+  quoteText.innerText = quotes[currentQuote % quotes.length];
+  currentQuote++;
+}, 1500);
 
-  const rotateQuotes = setInterval(() => {
-    quoteIndex = (quoteIndex + 1) % quotes.length;
-    quoteText.textContent = quotes[quoteIndex];
-  }, 1500);
+setTimeout(() => {
+  loadingScreen.style.display = 'none';
+  mainContent.style.display = 'block';
+}, 4000);
 
-  setTimeout(() => {
-    clearInterval(rotateQuotes);
-    document.getElementById("loadingScreen").style.opacity = "0";
-    setTimeout(() => {
-      document.getElementById("loadingScreen").style.display = "none";
-      document.getElementById("mainContent").style.display = "flex";
-    }, 500);
-  }, 4000);
+document.getElementById('playBtn').addEventListener('click', () => {
+  document.getElementById('videoOverlay').style.display = 'flex';
 });
-
-function playRandomEdit() {
-  const videos = [
-    'assets/edit1.mp4',
-    'assets/edit2.mp4',
-    'assets/edit3.mp4',
-  ];
-  const randomVideo = videos[Math.floor(Math.random() * videos.length)];
-  window.location.href = randomVideo;
-}
