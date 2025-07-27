@@ -160,3 +160,36 @@ button {
   z-index: 2;
   cursor: pointer;
 }
+/* Transitions */
+#mainContent,
+#playerOverlay {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+}
+
+#editVideo {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-video {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.top-banner,
+.about-me {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.slide-in {
+  opacity: 1;
+  transform: translateY(0);
+}
